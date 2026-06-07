@@ -2,7 +2,6 @@ import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, FolderKanban, CheckSquare, Users, LogOut, Sun, Moon, Menu, X, Activity, Home } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
-import { Avatar } from '../common';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 
@@ -27,94 +26,113 @@ export const Sidebar = () => {
   };
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full relative overflow-hidden">
+
+      {/* Background layers — glass effect */}
+      {dark && (
+        <>
+          <div style={{ position:'absolute', top:'-20%', left:'-20%', width:'70%', height:'70%', borderRadius:'50%', background:'radial-gradient(circle, rgba(37,66,131,0.25) 0%, transparent 70%)', pointerEvents:'none' }} />
+          <div style={{ position:'absolute', bottom:'-10%', right:'-10%', width:'60%', height:'60%', borderRadius:'50%', background:'radial-gradient(circle, rgba(99,60,180,0.15) 0%, transparent 70%)', pointerEvents:'none' }} />
+        </>
+      )}
 
       {/* Logo */}
-      <div className={`px-5 py-5 border-b ${dark ? 'border-white/8' : 'border-gray-200'}`}>
+      <div style={{ padding:'20px', borderBottom: dark ? '1px solid rgba(255,255,255,0.07)' : '1px solid #e5e7eb', position:'relative' }}>
         <Link to="/" className="flex items-center gap-3 group" onClick={() => setOpen(false)}>
-          <div className="w-9 h-9 bg-[#254283] rounded-xl flex items-center justify-center shadow-lg shadow-blue-900/30 group-hover:bg-[#1e3569] transition-colors flex-shrink-0">
-            <CheckSquare size={17} className="text-white" />
+          <div style={{ width:38, height:38, background:'linear-gradient(135deg, #254283, #3b63c8)', borderRadius:12, display:'flex', alignItems:'center', justifyContent:'center', boxShadow: dark ? '0 4px 16px rgba(37,66,131,0.5)' : '0 4px 12px rgba(37,66,131,0.25)', flexShrink:0 }}>
+            <CheckSquare size={17} color="white" />
           </div>
           <div>
-            <span className={`font-bold text-base tracking-tight ${dark ? 'text-white' : 'text-gray-900'}`}>
-              Task<span className="text-[#254283]">Collab</span>
-            </span>
-            <p className={`text-[10px] font-medium tracking-widest uppercase ${dark ? 'text-white/30' : 'text-gray-400'}`}>Workspace</p>
+            <div style={{ fontWeight:800, fontSize:15, letterSpacing:'-0.02em', color: dark ? '#fff' : '#0f172a' }}>
+              Task<span style={{ color:'#4a7eff' }}>Collab</span>
+            </div>
+            <div style={{ fontSize:9, fontWeight:700, letterSpacing:'0.18em', textTransform:'uppercase', color: dark ? 'rgba(255,255,255,0.28)' : '#9ca3af', marginTop:1 }}>Workspace</div>
           </div>
         </Link>
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 px-3 py-4 space-y-0.5">
+      <nav style={{ flex:1, padding:'12px 10px', display:'flex', flexDirection:'column', gap:2 }}>
         {navItems.map(({ to, icon: Icon, label }) => (
-          <NavLink
-            key={to} to={to}
-            onClick={() => setOpen(false)}
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
-                isActive
-                  ? dark
-                    ? 'bg-[#254283]/30 text-[#7aa8f0] border border-[#254283]/30'
-                    : 'bg-blue-50 text-blue-700 border border-blue-100'
-                  : dark
-                    ? 'text-white/55 hover:bg-white/6 hover:text-white border border-transparent'
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 border border-transparent'
-              }`
-            }
+          <NavLink key={to} to={to} onClick={() => setOpen(false)}
+            style={({ isActive }) => ({
+              display:'flex', alignItems:'center', gap:10,
+              padding:'10px 12px', borderRadius:12,
+              fontSize:13, fontWeight: isActive ? 600 : 500,
+              textDecoration:'none', transition:'all 0.2s',
+              background: isActive
+                ? dark ? 'linear-gradient(135deg, rgba(37,66,131,0.5), rgba(74,127,255,0.2))' : 'rgba(37,66,131,0.08)'
+                : 'transparent',
+              color: isActive
+                ? dark ? '#93c5fd' : '#254283'
+                : dark ? 'rgba(255,255,255,0.5)' : '#6b7280',
+              border: isActive
+                ? dark ? '1px solid rgba(74,127,255,0.3)' : '1px solid rgba(37,66,131,0.15)'
+                : '1px solid transparent',
+              boxShadow: isActive && dark ? '0 4px 16px rgba(37,66,131,0.2), inset 0 1px 0 rgba(255,255,255,0.05)' : 'none',
+              backdropFilter: isActive && dark ? 'blur(8px)' : 'none',
+            })}
           >
-            <Icon size={17} strokeWidth={1.8} />
-            {label}
+            {({ isActive }) => (
+              <>
+                <Icon size={17} strokeWidth={isActive ? 2.2 : 1.8} />
+                <span>{label}</span>
+                {isActive && dark && (
+                  <div style={{ marginLeft:'auto', width:5, height:5, borderRadius:'50%', background:'#4a7eff', boxShadow:'0 0 8px #4a7eff' }} />
+                )}
+              </>
+            )}
           </NavLink>
         ))}
 
-        {/* Landing page link */}
-        <div className={`pt-3 mt-3 border-t ${dark ? 'border-white/6' : 'border-gray-100'}`}>
-          <Link
-            to="/"
-            onClick={() => setOpen(false)}
-            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 border border-transparent ${
-              dark
-                ? 'text-white/35 hover:bg-white/6 hover:text-white/70'
-                : 'text-gray-400 hover:bg-gray-100 hover:text-gray-600'
-            }`}
+        {/* Divider + Landing */}
+        <div style={{ marginTop:8, paddingTop:8, borderTop: dark ? '1px solid rgba(255,255,255,0.06)' : '1px solid #f3f4f6' }}>
+          <Link to="/" onClick={() => setOpen(false)}
+            style={{ display:'flex', alignItems:'center', gap:10, padding:'10px 12px', borderRadius:12, fontSize:13, fontWeight:500, textDecoration:'none', color: dark ? 'rgba(255,255,255,0.28)' : '#9ca3af', border:'1px solid transparent', transition:'all 0.2s' }}
+            onMouseEnter={e => { e.currentTarget.style.background = dark ? 'rgba(255,255,255,0.05)' : '#f9fafb'; e.currentTarget.style.color = dark ? 'rgba(255,255,255,0.6)' : '#6b7280'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = dark ? 'rgba(255,255,255,0.28)' : '#9ca3af'; }}
           >
-            <Home size={17} strokeWidth={1.8} />
+            <Home size={16} strokeWidth={1.8} />
             <span>Landing Page</span>
-            <span className={`ml-auto text-[10px] px-1.5 py-0.5 rounded font-bold ${dark ? 'bg-white/8 text-white/30' : 'bg-gray-100 text-gray-400'}`}>↗</span>
+            <span style={{ marginLeft:'auto', fontSize:10, padding:'2px 6px', borderRadius:4, background: dark ? 'rgba(255,255,255,0.06)' : '#f3f4f6', color: dark ? 'rgba(255,255,255,0.25)' : '#9ca3af' }}>↗</span>
           </Link>
         </div>
       </nav>
 
       {/* Bottom */}
-      <div className={`px-3 py-4 border-t ${dark ? 'border-white/8' : 'border-gray-200'} space-y-1`}>
-        {/* Dark mode toggle */}
-        <button
-          onClick={toggle}
-          className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 border border-transparent ${
-            dark
-              ? 'text-white/50 hover:bg-white/6 hover:text-white/80'
-              : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700'
-          }`}
+      <div style={{ padding:'10px', borderTop: dark ? '1px solid rgba(255,255,255,0.07)' : '1px solid #e5e7eb' }}>
+        {/* Theme toggle */}
+        <button onClick={toggle}
+          style={{ display:'flex', alignItems:'center', gap:10, width:'100%', padding:'10px 12px', borderRadius:12, fontSize:13, fontWeight:500, border:'none', cursor:'pointer', transition:'all 0.2s', background:'transparent', color: dark ? 'rgba(255,255,255,0.45)' : '#6b7280', marginBottom:4 }}
+          onMouseEnter={e => { e.currentTarget.style.background = dark ? 'rgba(255,255,255,0.05)' : '#f9fafb'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; }}
         >
           {dark
-            ? <Sun size={17} strokeWidth={1.8} className="text-amber-400" />
-            : <Moon size={17} strokeWidth={1.8} />
+            ? <Sun size={16} strokeWidth={1.8} style={{ color:'#fbbf24' }} />
+            : <Moon size={16} strokeWidth={1.8} />
           }
           {dark ? 'Light Mode' : 'Dark Mode'}
         </button>
 
-        {/* User info */}
-        <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl mt-1 ${dark ? 'bg-white/4 border border-white/6' : 'bg-gray-50 border border-gray-100'}`}>
-          <div className="w-8 h-8 rounded-full bg-[#254283] flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+        {/* User card — glass */}
+        <div style={{
+          display:'flex', alignItems:'center', gap:10,
+          padding:'10px 12px', borderRadius:14,
+          background: dark ? 'rgba(255,255,255,0.04)' : '#f9fafb',
+          border: dark ? '1px solid rgba(255,255,255,0.08)' : '1px solid #e5e7eb',
+          backdropFilter: dark ? 'blur(12px)' : 'none',
+        }}>
+          <div style={{ width:32, height:32, borderRadius:10, background:'linear-gradient(135deg, #254283, #4a7eff)', display:'flex', alignItems:'center', justifyContent:'center', color:'white', fontWeight:700, fontSize:13, flexShrink:0, boxShadow: dark ? '0 4px 12px rgba(37,66,131,0.4)' : 'none' }}>
             {user?.name?.charAt(0).toUpperCase()}
           </div>
-          <div className="flex-1 min-w-0">
-            <p className={`text-sm font-semibold truncate ${dark ? 'text-white/90' : 'text-gray-800'}`}>{user?.name}</p>
-            <p className={`text-xs truncate capitalize ${dark ? 'text-white/35' : 'text-gray-400'}`}>{user?.role?.replace('_', ' ')}</p>
+          <div style={{ flex:1, minWidth:0 }}>
+            <div style={{ fontSize:13, fontWeight:600, color: dark ? 'rgba(255,255,255,0.88)' : '#111827', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis' }}>{user?.name}</div>
+            <div style={{ fontSize:11, color: dark ? 'rgba(255,255,255,0.32)' : '#9ca3af', textTransform:'capitalize' }}>{user?.role?.replace('_', ' ')}</div>
           </div>
-          <button
-            onClick={handleLogout}
-            className={`p-1.5 rounded-lg transition-colors flex-shrink-0 ${dark ? 'text-white/30 hover:text-red-400 hover:bg-red-500/10' : 'text-gray-400 hover:text-red-500 hover:bg-red-50'}`}
+          <button onClick={handleLogout}
+            style={{ padding:6, borderRadius:8, border:'none', cursor:'pointer', background:'transparent', color: dark ? 'rgba(255,255,255,0.28)' : '#9ca3af', transition:'all 0.2s', display:'flex' }}
+            onMouseEnter={e => { e.currentTarget.style.background = dark ? 'rgba(239,68,68,0.15)' : '#fee2e2'; e.currentTarget.style.color = '#ef4444'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = dark ? 'rgba(255,255,255,0.28)' : '#9ca3af'; }}
             title="Logout"
           >
             <LogOut size={15} />
@@ -124,31 +142,31 @@ export const Sidebar = () => {
     </div>
   );
 
+  const sidebarBg = dark
+    ? 'linear-gradient(180deg, #080d1a 0%, #0a1020 50%, #080d1a 100%)'
+    : '#ffffff';
+
   return (
     <>
-      {/* Desktop */}
-      <aside className={`hidden lg:flex flex-col w-64 h-screen fixed left-0 top-0 border-r ${
-        dark
-          ? 'bg-[#0a0f1e] border-white/6'
-          : 'bg-white border-gray-200'
-      }`}>
+      <aside className="hidden lg:flex flex-col w-64 h-screen fixed left-0 top-0"
+        style={{ background: sidebarBg, borderRight: dark ? '1px solid rgba(255,255,255,0.07)' : '1px solid #e5e7eb' }}>
         <SidebarContent />
       </aside>
 
-      {/* Mobile toggle */}
-      <button
-        className={`lg:hidden fixed top-4 left-4 z-50 p-2 border rounded-lg shadow-sm ${dark ? 'bg-[#0a0f1e] border-white/10' : 'bg-white border-gray-200'}`}
-        onClick={() => setOpen(true)}
-      >
-        <Menu size={20} className={dark ? 'text-white' : 'text-gray-700'} />
+      <button className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg border shadow-sm"
+        style={{ background: dark ? 'rgba(8,13,26,0.9)' : '#fff', borderColor: dark ? 'rgba(255,255,255,0.1)' : '#e5e7eb', backdropFilter:'blur(12px)' }}
+        onClick={() => setOpen(true)}>
+        <Menu size={20} style={{ color: dark ? '#fff' : '#374151' }} />
       </button>
 
-      {/* Mobile drawer */}
       {open && (
         <div className="lg:hidden fixed inset-0 z-50">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setOpen(false)} />
-          <aside className={`relative w-64 h-full border-r ${dark ? 'bg-[#0a0f1e] border-white/6' : 'bg-white border-gray-200'}`}>
-            <button className={`absolute top-4 right-4 p-1.5 rounded-lg ${dark ? 'text-white/40 hover:text-white hover:bg-white/8' : 'text-gray-400 hover:text-gray-700'}`} onClick={() => setOpen(false)}>
+          <aside className="relative w-64 h-full"
+            style={{ background: sidebarBg, borderRight: dark ? '1px solid rgba(255,255,255,0.07)' : '1px solid #e5e7eb' }}>
+            <button className="absolute top-4 right-4 p-1.5 rounded-lg"
+              style={{ background:'transparent', border:'none', cursor:'pointer', color: dark ? 'rgba(255,255,255,0.4)' : '#9ca3af' }}
+              onClick={() => setOpen(false)}>
               <X size={18} />
             </button>
             <SidebarContent />
