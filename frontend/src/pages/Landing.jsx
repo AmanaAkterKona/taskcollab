@@ -108,15 +108,18 @@ export default function Landing() {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#0B132B]/85 backdrop-blur-xl border-b border-white/[0.08] py-3 shadow-lg shadow-black/10' : 'bg-[#0B132B] py-5'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-md transition-transform duration-300 group-hover:scale-105">
-              <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <span className="font-sans text-lg font-extrabold tracking-tight text-white">
-              Task<span className="font-semibold text-slate-300">Collab</span>
-            </span>
-          </Link>
+  <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-md transition-transform duration-300 group-hover:scale-105">
+    <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+  </div>
+  <div>
+    <div className="font-sans text-lg font-extrabold tracking-tight text-white leading-none">
+      Task<span className="text-blue-400 font-semibold">Collab</span>
+    </div>
+    <div className="text-[9px] font-bold text-slate-400 uppercase tracking-[0.18em] mt-0.5">Workspace</div>
+  </div>
+</Link>
 
           <div className="hidden md:flex gap-8 text-sm font-bold text-slate-300">
             <a href="#features" className="hover:text-blue-400 transition-colors">Features</a>
@@ -635,10 +638,19 @@ export default function Landing() {
       {/* ── Footer ── */}
       <footer className={`py-12 px-6 border-t ${D ? 'bg-[#02050A] border-white/[0.05]' : 'bg-[#0B132B] text-slate-400'}`}>
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center"><div className="w-3 h-3 border border-white/50 rounded-sm rotate-45" /></div>
-            <span className="font-sans text-lg font-extrabold tracking-tighter text-white">Task<span className="text-blue-400 font-semibold">Collab</span></span>
-          </div>
+          <div className="flex items-center gap-2.5">
+  <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-md">
+    <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+    </svg>
+  </div>
+  <div>
+    <div className="font-sans text-lg font-extrabold tracking-tight text-white leading-none">
+      Task<span className="text-blue-400 font-semibold">Collab</span>
+    </div>
+    <div className="text-[9px] font-bold text-slate-500 uppercase tracking-[0.18em] mt-0.5">Workspace</div>
+  </div>
+</div>
           <p className="text-xs font-semibold text-slate-300">© 2026 TaskCollab. Built beautifully for modern ecosystems.</p>
           <div className="flex gap-4 text-xs font-bold text-slate-300">
             <button onClick={toggleTheme}>{D ? '☀️ Light' : '🌙 Dark'}</button>
