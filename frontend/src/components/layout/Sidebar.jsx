@@ -29,63 +29,95 @@ export const Sidebar = () => {
   const SidebarContent = () => (
     <div className="flex flex-col h-full">
 
-      {/* Logo — click করলে landing page এ যাবে */}
-      <div className="px-6 py-5 border-b border-gray-200 dark:border-gray-800">
-        <Link to="/" className="flex items-center gap-2 group" onClick={() => setOpen(false)}>
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center group-hover:bg-blue-700 transition-colors">
-            <CheckSquare size={16} className="text-white" />
+      {/* Logo */}
+      <div className={`px-5 py-5 border-b ${dark ? 'border-white/8' : 'border-gray-200'}`}>
+        <Link to="/" className="flex items-center gap-3 group" onClick={() => setOpen(false)}>
+          <div className="w-9 h-9 bg-[#254283] rounded-xl flex items-center justify-center shadow-lg shadow-blue-900/30 group-hover:bg-[#1e3569] transition-colors flex-shrink-0">
+            <CheckSquare size={17} className="text-white" />
           </div>
-          <span className="font-bold text-lg group-hover:text-blue-600 transition-colors">TaskCollab</span>
+          <div>
+            <span className={`font-bold text-base tracking-tight ${dark ? 'text-white' : 'text-gray-900'}`}>
+              Task<span className="text-[#254283]">Collab</span>
+            </span>
+            <p className={`text-[10px] font-medium tracking-widest uppercase ${dark ? 'text-white/30' : 'text-gray-400'}`}>Workspace</p>
+          </div>
         </Link>
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 px-3 py-4 space-y-1">
+      <nav className="flex-1 px-3 py-4 space-y-0.5">
         {navItems.map(({ to, icon: Icon, label }) => (
           <NavLink
             key={to} to={to}
             onClick={() => setOpen(false)}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+              `flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
                 isActive
-                  ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
-                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100'
+                  ? dark
+                    ? 'bg-[#254283]/30 text-[#7aa8f0] border border-[#254283]/30'
+                    : 'bg-blue-50 text-blue-700 border border-blue-100'
+                  : dark
+                    ? 'text-white/55 hover:bg-white/6 hover:text-white border border-transparent'
+                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 border border-transparent'
               }`
             }
           >
-            <Icon size={18} />
+            <Icon size={17} strokeWidth={1.8} />
             {label}
           </NavLink>
         ))}
 
         {/* Landing page link */}
-        <div className="pt-2 mt-2 border-t border-gray-100 dark:border-gray-800">
+        <div className={`pt-3 mt-3 border-t ${dark ? 'border-white/6' : 'border-gray-100'}`}>
           <Link
             to="/"
             onClick={() => setOpen(false)}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-500 dark:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 border border-transparent ${
+              dark
+                ? 'text-white/35 hover:bg-white/6 hover:text-white/70'
+                : 'text-gray-400 hover:bg-gray-100 hover:text-gray-600'
+            }`}
           >
-            <Home size={18} />
+            <Home size={17} strokeWidth={1.8} />
             <span>Landing Page</span>
-            <span className="ml-auto text-xs bg-gray-100 dark:bg-gray-800 text-gray-400 px-1.5 py-0.5 rounded">↗</span>
+            <span className={`ml-auto text-[10px] px-1.5 py-0.5 rounded font-bold ${dark ? 'bg-white/8 text-white/30' : 'bg-gray-100 text-gray-400'}`}>↗</span>
           </Link>
         </div>
       </nav>
 
       {/* Bottom */}
-      <div className="px-3 py-4 border-t border-gray-200 dark:border-gray-800 space-y-2">
-        <button onClick={toggle} className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-          {dark ? <Sun size={18} /> : <Moon size={18} />}
+      <div className={`px-3 py-4 border-t ${dark ? 'border-white/8' : 'border-gray-200'} space-y-1`}>
+        {/* Dark mode toggle */}
+        <button
+          onClick={toggle}
+          className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 border border-transparent ${
+            dark
+              ? 'text-white/50 hover:bg-white/6 hover:text-white/80'
+              : 'text-gray-500 hover:bg-gray-100 hover:text-gray-700'
+          }`}
+        >
+          {dark
+            ? <Sun size={17} strokeWidth={1.8} className="text-amber-400" />
+            : <Moon size={17} strokeWidth={1.8} />
+          }
           {dark ? 'Light Mode' : 'Dark Mode'}
         </button>
-        <div className="flex items-center gap-3 px-3 py-2">
-          <Avatar name={user?.name} size="sm" />
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium truncate">{user?.name}</p>
-            <p className="text-xs text-gray-400 truncate capitalize">{user?.role?.replace('_', ' ')}</p>
+
+        {/* User info */}
+        <div className={`flex items-center gap-3 px-3 py-2.5 rounded-xl mt-1 ${dark ? 'bg-white/4 border border-white/6' : 'bg-gray-50 border border-gray-100'}`}>
+          <div className="w-8 h-8 rounded-full bg-[#254283] flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+            {user?.name?.charAt(0).toUpperCase()}
           </div>
-          <button onClick={handleLogout} className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 hover:text-red-500 transition-colors" title="Logout">
-            <LogOut size={16} />
+          <div className="flex-1 min-w-0">
+            <p className={`text-sm font-semibold truncate ${dark ? 'text-white/90' : 'text-gray-800'}`}>{user?.name}</p>
+            <p className={`text-xs truncate capitalize ${dark ? 'text-white/35' : 'text-gray-400'}`}>{user?.role?.replace('_', ' ')}</p>
+          </div>
+          <button
+            onClick={handleLogout}
+            className={`p-1.5 rounded-lg transition-colors flex-shrink-0 ${dark ? 'text-white/30 hover:text-red-400 hover:bg-red-500/10' : 'text-gray-400 hover:text-red-500 hover:bg-red-50'}`}
+            title="Logout"
+          >
+            <LogOut size={15} />
           </button>
         </div>
       </div>
@@ -94,17 +126,31 @@ export const Sidebar = () => {
 
   return (
     <>
-      <aside className="hidden lg:flex flex-col w-64 h-screen fixed left-0 top-0 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800">
+      {/* Desktop */}
+      <aside className={`hidden lg:flex flex-col w-64 h-screen fixed left-0 top-0 border-r ${
+        dark
+          ? 'bg-[#0a0f1e] border-white/6'
+          : 'bg-white border-gray-200'
+      }`}>
         <SidebarContent />
       </aside>
-      <button className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-sm" onClick={() => setOpen(true)}>
-        <Menu size={20} />
+
+      {/* Mobile toggle */}
+      <button
+        className={`lg:hidden fixed top-4 left-4 z-50 p-2 border rounded-lg shadow-sm ${dark ? 'bg-[#0a0f1e] border-white/10' : 'bg-white border-gray-200'}`}
+        onClick={() => setOpen(true)}
+      >
+        <Menu size={20} className={dark ? 'text-white' : 'text-gray-700'} />
       </button>
+
+      {/* Mobile drawer */}
       {open && (
         <div className="lg:hidden fixed inset-0 z-50">
-          <div className="absolute inset-0 bg-black/50" onClick={() => setOpen(false)} />
-          <aside className="relative w-64 h-full bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800">
-            <button className="absolute top-4 right-4 p-1" onClick={() => setOpen(false)}><X size={18} /></button>
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setOpen(false)} />
+          <aside className={`relative w-64 h-full border-r ${dark ? 'bg-[#0a0f1e] border-white/6' : 'bg-white border-gray-200'}`}>
+            <button className={`absolute top-4 right-4 p-1.5 rounded-lg ${dark ? 'text-white/40 hover:text-white hover:bg-white/8' : 'text-gray-400 hover:text-gray-700'}`} onClick={() => setOpen(false)}>
+              <X size={18} />
+            </button>
             <SidebarContent />
           </aside>
         </div>
