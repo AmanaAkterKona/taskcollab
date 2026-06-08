@@ -24,7 +24,7 @@ const roleData = {
     stats: { allowed: 'All Stacks', limit: 'No Restrictions' },
     permissions: ['Create & Delete Projects', 'Invite & Manage Members', 'Assign System Roles', 'Manage Project Billing', 'Modify All Workspaces']
   },
-  'Project Manager': { // মনে রাখবেন: বাটন বা স্টেট যদি 'Project Manager' খোঁজে, তবে কি-এর নামও অবিকল এক হতে হবে
+  'Project Manager': { 
     desc: 'Can manage projects and tasks but cannot modify billing or global workspace settings.',
     stats: { allowed: 'Assigned Workspaces', limit: 'No System/Billing Config' },
     permissions: ['Create Projects', 'Invite Team Members', 'Assign Tasks', 'Update Task Status', 'Comment on Board']
@@ -278,11 +278,11 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── Simulated Team Roles & Permissions (How It Works থিম ম্যাচড) ── */}
+      
 <section id="simulator" className={`py-32 border-t transition-colors duration-500 ${D ? 'bg-[#030712] border-white/[0.04]' : 'bg-[#FCF9F2] border-amber-100/60'}`}>
   <div className="max-w-6xl mx-auto px-6">
     
-    {/* সেকশন হেডার */}
+ 
     <div className="text-center max-w-2xl mx-auto mb-20">
       <div className={`inline-flex items-center gap-2 font-extrabold text-xs uppercase tracking-widest mb-4 ${D ? 'text-cyan-400' : 'text-blue-700'}`}>
         <span className={`w-1.5 h-1.5 rounded-full ${D ? 'bg-cyan-400' : 'bg-blue-700'}`} /> Assessment Specs
@@ -295,10 +295,10 @@ export default function Landing() {
       </p>
     </div>
 
-    {/* মেইন ইন্টারঅ্যাক্টিভ গ্রিড - How It Works এর মতো items-stretch ব্যবহার করা হয়েছে */}
+   
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
       
-      {/* বামপাশের ট্যাব কন্ট্রোল */}
+     
       <div className="lg:col-span-4 flex flex-col justify-between gap-3">
         {Object.keys(roleData).map((role) => {
           const isActive = selectedRole === role;
@@ -334,12 +334,12 @@ export default function Landing() {
         })}
       </div>
 
-      {/* ডানপাশের ডাইনামিক ডিসপ্লে প্যানেল */}
+     
       <div className={`lg:col-span-8 rounded-2xl border p-6 md:p-8 flex flex-col justify-between transition-all duration-500
         ${D ? 'border-white/[0.08] bg-white/[0.01]' : 'border-slate-200/80 bg-white/50 shadow-xl'}`}
       >
         <div>
-          {/* স্কোপ গার্ড ব্যাজ */}
+         
           <div className="flex flex-wrap items-center gap-3 mb-4">
             <span className={`text-[10px] font-mono px-2.5 py-1 rounded-md font-extrabold border uppercase
               ${D ? 'bg-blue-950/40 border-blue-500/20 text-blue-400' : 'bg-blue-50 border-blue-200 text-blue-800'}`}
@@ -360,7 +360,7 @@ export default function Landing() {
             {roleData[selectedRole].desc}
           </p>
 
-          {/* গ্র্যানুলার পারমিশন চেকলিস্ট */}
+          
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {roleData[selectedRole].permissions.map((perm, i) => (
               <div 
@@ -375,7 +375,7 @@ export default function Landing() {
           </div>
         </div>
 
-        {/* টাস্ক ভ্যালিডেশন রুলস প্রিভিউ (Requirement 4 অনুযায়ী) */}
+       
         <div className={`mt-6 pt-4 border-t border-dashed flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-bold
           ${D ? 'border-white/[0.08] text-slate-400' : 'border-slate-300 text-slate-600'}`}
         >
@@ -467,11 +467,11 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ── Core UI Sandbox: Live Task Board (How It Works থিম ম্যাচড) ── */}
+      
 <section id="preview-board" className={`py-32 border-t transition-colors duration-500 ${D ? 'bg-[#030712] border-white/[0.04]' : 'bg-[#FCF9F2] border-amber-100/60'}`}>
   <div className="max-w-5xl mx-auto px-6">
     
-    {/* সেকশন হেডার */}
+
     <div className="text-center max-w-2xl mx-auto mb-16">
       <div className={`inline-flex items-center gap-2 font-extrabold text-xs uppercase tracking-widest mb-4 ${D ? 'text-cyan-400' : 'text-blue-700'}`}>
         <span className={`w-1.5 h-1.5 rounded-full ${D ? 'bg-cyan-400' : 'bg-blue-700'}`} /> Core UI Sandbox
@@ -484,12 +484,12 @@ export default function Landing() {
       </p>
     </div>
 
-    {/* ইন্টারেক্টিভ স্যান্ডবক্স প্যানেল */}
+   
     <div className={`rounded-2xl border p-6 md:p-8 transition-all duration-500 ${D ? 'border-white/[0.08] bg-white/[0.01]' : 'border-slate-200/80 bg-white/60 shadow-xl'}`}>
       
-      {/* কন্ট্রোল বার: সার্চ এবং ফিল্টারিং ফিল্ডসমূহ */}
+     
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mb-8 items-center">
-        {/* সার্চ ইনপুট সিমুলেশন */}
+       
         <div className="md:col-span-5 relative">
           <span className="absolute left-4 top-3.5 text-xs opacity-50">🔍</span>
           <input 
@@ -501,7 +501,7 @@ export default function Landing() {
           />
         </div>
 
-        {/* ডাইনামিক ফিল্টার বাটন গ্রুপ */}
+       
         <div className="md:col-span-7 flex flex-wrap gap-2 justify-start md:justify-end">
           {['All', 'High Priority', 'Completed'].map((tab) => {
             const currentFilterValue = tab === 'High Priority' ? 'High' : tab;
@@ -523,7 +523,7 @@ export default function Landing() {
         </div>
       </div>
 
-      {/* মেটাডেটা প্রডাক্টিভিটি বার */}
+    
       <div className={`flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border mb-6 text-xs font-bold ${D ? 'bg-[#070C19]/30 border-white/5 text-slate-400' : 'bg-slate-50 border-slate-200 text-slate-600'}`}>
         <div className="flex items-center gap-2">
           <span className="text-blue-500">📊</span>
@@ -535,7 +535,7 @@ export default function Landing() {
         </div>
       </div>
 
-      {/* ডাইনামিক ফিল্টারকৃত টাস্ক কার্ড লিস্ট */}
+      
       <div className="space-y-3 min-h-[220px]">
         {filteredTasks.length > 0 ? (
           filteredTasks.map(task => (
@@ -544,7 +544,7 @@ export default function Landing() {
               className={`flex flex-col sm:flex-row sm:items-center justify-between rounded-xl px-5 py-4 border gap-4 transition-all duration-300 transform hover:translate-x-1
                 ${D ? 'bg-[#070C19]/90 border-white/[0.05] hover:border-white/10' : 'bg-white border-slate-200 shadow-sm hover:border-slate-300'}`}
             >
-              {/* বাম পাশ: ইন্ডিকেটর ও টাস্কের নাম */}
+              
               <div className="flex items-center gap-3.5">
                 <div className="relative flex items-center justify-center">
                   <span className={`w-2.5 h-2.5 rounded-full ${task.priority === 'High' ? 'bg-rose-500' : task.priority === 'Medium' ? 'bg-amber-400' : 'bg-slate-400'}`} />
@@ -556,7 +556,7 @@ export default function Landing() {
                 </div>
               </div>
 
-              {/* ডান পাশ: প্রডাক্টিভিটি ব্যাজসমূহ */}
+             
               <div className="flex items-center gap-3 justify-between sm:justify-end border-t sm:border-t-0 pt-3 sm:pt-0 border-dashed border-white/5">
                 <span className="text-[11px] font-mono opacity-60">📅 Due in 2 Days</span>
                 <span className={`text-xs px-3 py-1 rounded-md border font-extrabold shadow-sm uppercase tracking-wider
