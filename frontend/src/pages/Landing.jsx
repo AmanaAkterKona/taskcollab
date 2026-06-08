@@ -581,60 +581,63 @@ export default function Landing() {
   </div>
 </section>
 
-      {/* ── CTA ── */}
-      <section id="cta" className={`py-32 px-6 relative overflow-hidden transition-colors duration-500 ${D ? 'bg-[#050B14]' : 'bg-[#FCF9F2]'}`}>
-        {D && <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />}
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="grid grid-cols-2 gap-4">
-              {['/cta2.jpg', '/cta3.jpg', '/cta4.jpg', '/img1.png'].map((src, i) => (
-                <div 
-                  key={i} 
-                  className={`relative h-60 md:h-64 rounded-2xl overflow-hidden border shadow-sm group transition-all duration-500
-                    ${D ? 'border-white/[0.08] bg-white/[0.02]' : 'border-slate-200 bg-white/50 p-1.5'}`}
-                >
-                  <img 
-                    src={src} 
-                    alt={`Visual ${i + 1}`} 
-                    className="w-full h-full object-cover rounded-xl transition-transform duration-700 group-hover:scale-105" 
-                  />
-                </div>
-              ))}
-            </div>
-            
-            <div className="text-left lg:pl-8">
-              <div className={`inline-flex items-center gap-2 font-extrabold text-xs uppercase tracking-widest mb-6 ${D ? 'text-cyan-400' : 'text-blue-700'}`}>
-                <span className={`w-1.5 h-1.5 rounded-full ${D ? 'bg-cyan-400' : 'bg-blue-700'}`} /> Built for modern stacks
-              </div>
-              
-              <h2 className={`font-sans text-4xl md:text-5xl font-extrabold leading-[1.1] mb-8 tracking-tight ${D ? 'text-white' : 'text-[#0F172A]'}`}>
-                Ready to unite <br />
-                <span className={D ? 'text-blue-400' : 'text-blue-700'}>your team?</span>
-              </h2>
-              
-              <p className={`text-base md:text-lg mb-10 max-w-lg leading-relaxed ${D ? 'text-slate-400' : 'text-[#475569] font-bold'}`}>
-                Experience the power of TaskCollab. Manage projects, track tasks, assign roles, and sync your team — all in one unified platform.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-8">
-                <Link to="/signup" className="px-10 py-4 bg-gradient-to-r from-[#254283] to-[#3b82f6] text-white rounded-xl font-extrabold text-lg shadow-md hover:-translate-y-0.5 transition-all">
-                  Get started for free →
-                </Link>
-              </div>
-              
-              <div className={`text-sm p-4 rounded-xl border transition-all duration-500
-                ${D 
-                  ? 'bg-[#0B1329]/60 border-blue-500/30 text-slate-400' 
-                  : 'bg-white border-amber-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] text-[#334155]'
-                }`}
-              >
-                Demo Suite: <span className={`font-mono font-extrabold ${D ? 'text-blue-400' : 'text-blue-700'}`}>admin@demo.com</span> / <span className={`font-mono font-extrabold ${D ? 'text-blue-400' : 'text-blue-700'}`}>demo1234</span>
-              </div>
-            </div>
+     {/* ── CTA ── */}
+<section id="cta" className={`py-32 px-6 relative overflow-hidden transition-colors duration-500 ${D ? 'bg-[#050B14]' : 'bg-[#FCF9F2]'}`}>
+  {D && <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />}
+  <div className="max-w-7xl mx-auto relative z-10">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="grid grid-cols-2 gap-4">
+        {['/cta2.jpg', '/cta3.jpg', '/cta4.jpg', '/img1.png'].map((src, i) => (
+          <div 
+            key={i} 
+            className={`relative h-60 md:h-64 rounded-2xl overflow-hidden border shadow-sm group transition-all duration-500
+              ${D ? 'border-white/[0.08] bg-white/[0.02]' : 'border-slate-200 bg-white/50 p-1.5'}`}
+          >
+            <img 
+              src={src} 
+              alt={`Visual ${i + 1}`} 
+              className="w-full h-full object-cover rounded-xl transition-transform duration-700 group-hover:scale-105" 
+            />
           </div>
+        ))}
+      </div>
+      
+      <div className="text-left lg:pl-8">
+        {/* Light mode-এ text-blue-700 থেকে text-blue-900 (আরও ডার্ক) করা হয়েছে */}
+        <div className={`inline-flex items-center gap-2 font-extrabold text-xs uppercase tracking-widest mb-6 ${D ? 'text-cyan-400' : 'text-blue-900'}`}>
+          <span className={`w-1.5 h-1.5 rounded-full ${D ? 'bg-cyan-400' : 'bg-blue-900'}`} /> Built for modern stacks
         </div>
-      </section>
-
+        
+        {/* Light mode-এ text-[#0F172A] (Slate 900) ব্যবহার করা হয়েছে যা রিডাবিলিটির জন্য পারফেক্ট */}
+        <h2 className={`font-sans text-4xl md:text-5xl font-extrabold leading-[1.1] mb-8 tracking-tight ${D ? 'text-white' : 'text-[#0F172A]'}`}>
+          Ready to unite <br />
+          <span className={D ? 'text-blue-400' : 'text-blue-800'}>your team?</span>
+        </h2>
+        
+        {/* Light mode-এ text-[#475569] থেকে text-[#1E293B] (Slate 800) করা হয়েছে যাতে টেক্সটটি পরিষ্কার পড়া যায় */}
+        <p className={`text-base md:text-lg mb-10 max-w-lg leading-relaxed ${D ? 'text-slate-400' : 'text-[#1E293B] font-semibold'}`}>
+          Experience the power of TaskCollab. Manage projects, track tasks, assign roles, and sync your team — all in one unified platform.
+        </p>
+        
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-8">
+          <Link to="/signup" className="px-10 py-4 bg-gradient-to-r from-[#254283] to-[#3b82f6] text-white rounded-xl font-extrabold text-lg shadow-md hover:-translate-y-0.5 transition-all">
+            Get started for free →
+          </Link>
+        </div>
+        
+        {/* Light mode-এ Demo Suite বক্সের টেক্সট text-[#334155] থেকে text-[#0F172A] এবং ইমেইল/পাসওয়ার্ড text-blue-800 করা হয়েছে */}
+        <div className={`text-sm p-4 rounded-xl border transition-all duration-500
+          ${D 
+            ? 'bg-[#0B1329]/60 border-blue-500/30 text-slate-400' 
+            : 'bg-white border-amber-200/70 shadow-[0_4px_20px_rgba(0,0,0,0.02)] text-[#0F172A]'
+          }`}
+        >
+          Demo Suite: <span className={`font-mono font-extrabold ${D ? 'text-blue-400' : 'text-blue-800'}`}>admin@demo.com</span> / <span className={`font-mono font-extrabold ${D ? 'text-blue-400' : 'text-blue-800'}`}>demo1234</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
       {/* ── Footer ── */}
       <footer className={`py-12 px-6 border-t ${D ? 'bg-[#02050A] border-white/[0.05]' : 'bg-[#0B132B] text-slate-400'}`}>
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
