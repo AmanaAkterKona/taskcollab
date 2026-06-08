@@ -24,7 +24,7 @@ const roleData = {
     stats: { allowed: 'All Stacks', limit: 'No Restrictions' },
     permissions: ['Create & Delete Projects', 'Invite & Manage Members', 'Assign System Roles', 'Manage Project Billing', 'Modify All Workspaces']
   },
-  'Project Manager': {
+  'Project Manager': { // মনে রাখবেন: বাটন বা স্টেট যদি 'Project Manager' খোঁজে, তবে কি-এর নামও অবিকল এক হতে হবে
     desc: 'Can manage projects and tasks but cannot modify billing or global workspace settings.',
     stats: { allowed: 'Assigned Workspaces', limit: 'No System/Billing Config' },
     permissions: ['Create Projects', 'Invite Team Members', 'Assign Tasks', 'Update Task Status', 'Comment on Board']
@@ -95,7 +95,7 @@ export default function Landing() {
   });
 
   return (
-    <div className={`min-h-screen overflow-x-hidden font-sans antialiased transition-colors duration-500 ${D ? 'bg-[#030712] text-slate-100' : 'bg-[#F2F4F8] text-gray-900'}`}>
+    <div className={`min-h-screen overflow-x-hidden font-sans antialiased transition-colors duration-500 ${D ? 'bg-[#030712] text-slate-100' : 'bg-[#E2E8F0] text-slate-900'}`}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -150,40 +150,40 @@ export default function Landing() {
             autoPlay
             preload="auto"
             poster="/img4.png"
-            className={`w-full h-full object-cover object-center transition-opacity duration-1000 will-change-transform transform scale-100 ${D ? 'opacity-[0.38]' : 'opacity-[0.2]'}`}
+            className={`w-full h-full object-cover object-center transition-opacity duration-1000 will-change-transform transform scale-100 ${D ? 'opacity-[0.38]' : 'opacity-[0.45]'}`}
             style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
           />
           <div className={`absolute top-[-10%] left-[-5%] w-[60%] h-[60%] rounded-full blur-[140px] opacity-25 ${D ? 'bg-blue-600' : 'bg-blue-500'}`} />
           <div className={`absolute bottom-[-10%] right-[-5%] w-[60%] h-[60%] rounded-full blur-[140px] opacity-20 ${D ? 'bg-indigo-600' : 'bg-indigo-500'}`} />
-          <div className={`absolute inset-0 ${D ? 'bg-gradient-to-b from-[#030712]/50 via-[#030712]/30 to-[#030712]' : 'bg-gradient-to-b from-white/90 via-white/80 to-white'}`} />
+          <div className={`absolute inset-0 ${D ? 'bg-gradient-to-b from-[#030712]/50 via-[#030712]/30 to-[#030712]' : 'bg-gradient-to-b from-[#0B132B]/40 via-[#E2E8F0]/30 to-[#E2E8F0]'}`} />
         </div>
 
         <div className="max-w-5xl mx-auto text-center relative z-10">
-          <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-8 border backdrop-blur-md ${D ? 'bg-blue-500/5 border-blue-500/20 text-blue-400' : 'bg-white/70 border-gray-300 text-blue-800 shadow-sm'}`}>
+          <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold mb-8 border backdrop-blur-md ${D ? 'bg-blue-500/5 border-blue-500/20 text-blue-400' : 'bg-slate-900/40 border-slate-700/30 text-blue-900'}`}>
             <span className="w-2 h-2 bg-blue-600 rounded-full animate-pulse" /> Real-time collaboration platform
           </div>
 
-          <h1 className={`font-sans text-5xl md:text-7xl font-extrabold leading-[1.1] mb-8 tracking-tighter ${D ? 'text-white' : 'text-gray-900'}`}>
+          <h1 className={`font-sans text-5xl md:text-7xl font-extrabold leading-[1.1] mb-8 tracking-tighter ${D ? 'text-white' : 'text-slate-950'}`}>
             Your team's <span className="bg-gradient-to-r from-blue-700 via-[#254283] to-blue-500 bg-clip-text text-transparent font-semibold">command center</span>
           </h1>
 
-          <p className={`text-base md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-semibold ${D ? 'text-slate-400' : 'text-gray-700'}`}>
+          <p className={`text-base md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-semibold ${D ? 'text-slate-400' : 'text-slate-800'}`}>
             Manage projects, track tasks, share updates, and collaborate — all in one beautiful workspace built for modern agile teams.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-24">
             <Link to="/signup" className="px-8 py-4 bg-gradient-to-r from-[#254283] to-[#3b82f6] text-white rounded-xl font-bold shadow-lg hover:-translate-y-0.5 transition-all">Start for free →</Link>
-            <Link to="/login" className={`px-8 py-4 rounded-xl font-bold border ${D ? 'bg-white/[0.02] border-white/[0.08] text-white' : 'bg-white border-gray-300 text-gray-800 shadow-sm hover:bg-gray-50'}`}>Sign in to account</Link>
+            <Link to="/login" className={`px-8 py-4 rounded-xl font-bold border ${D ? 'bg-white/[0.02] border-white/[0.08] text-white' : 'bg-white border-slate-400 text-slate-900 shadow-sm'}`}>Sign in to account</Link>
           </div>
 
           {/* Dashboard Preview Frame */}
-          <div className={`relative max-w-4xl mx-auto rounded-2xl overflow-hidden border p-2 backdrop-blur-xl ${D ? 'border-white/[0.08] bg-white/[0.01]' : 'border-gray-300 bg-white/90 shadow-2xl'}`}>
-            <div className={`rounded-xl overflow-hidden p-6 border ${D ? 'bg-[#070C19]/90 border-white/[0.05]' : 'bg-white border-gray-200'}`}>
-              <div className="flex items-center justify-between border-b border-dashed pb-4 mb-6 ${D ? 'border-white/10' : 'border-gray-300'}">
+          <div className={`relative max-w-4xl mx-auto rounded-2xl overflow-hidden border p-2 backdrop-blur-xl ${D ? 'border-white/[0.08] bg-white/[0.01]' : 'border-slate-400 bg-slate-300/80 shadow-2xl'}`}>
+            <div className={`rounded-xl overflow-hidden p-6 border ${D ? 'bg-[#070C19]/90 border-white/[0.05]' : 'bg-white border-slate-200'}`}>
+              <div className="flex items-center justify-between border-b border-dashed pb-4 mb-6 border-slate-300">
                 <div className="flex items-center gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-rose-500" /> <div className="w-3 h-3 rounded-full bg-amber-500" /> <div className="w-3 h-3 rounded-full bg-emerald-500" />
                 </div>
-                <div className={`text-xs font-mono ${D ? 'text-slate-500' : 'text-gray-500'}`}>taskcollab.app/dashboard</div>
+                <div className="text-xs font-mono text-slate-500">taskcollab.app/dashboard</div>
                 <div className="w-4" />
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
@@ -193,10 +193,10 @@ export default function Landing() {
               </div>
               <div className="space-y-3">
                 {[['Setup API Endpoint','High','In Progress','border-rose-500/40 bg-rose-500/5 text-rose-600'],['Design System v1.0','Medium','Completed','border-emerald-500/40 bg-emerald-500/5 text-emerald-600'],['Documentation','Low','Todo','border-slate-500/40 bg-slate-500/5 text-slate-600']].map(([t,p,s,cl])=>(
-                  <div key={t} className={`flex items-center justify-between rounded-xl px-5 py-3.5 border ${D ? 'bg-white/[0.01] border-white/[0.05]' : 'bg-gray-50 border-gray-200'}`}>
+                  <div key={t} className={`flex items-center justify-between rounded-xl px-5 py-3.5 border ${D ? 'bg-white/[0.01] border-white/[0.05]' : 'bg-slate-50 border-slate-200'}`}>
                     <div className="flex items-center gap-3">
                       <span className={`w-1.5 h-1.5 rounded-full ${p==='High'?'bg-rose-500':p==='Medium'?'bg-amber-400':'bg-slate-400'}`} />
-                      <span className={`text-sm font-bold ${D ? 'text-slate-300' : 'text-gray-800'}`}>{t}</span>
+                      <span className={`text-sm font-bold ${D ? 'text-slate-300' : 'text-slate-800'}`}>{t}</span>
                     </div>
                     <span className={`text-xs px-3 py-1 rounded-md border font-bold ${cl}`}>{s}</span>
                   </div>
@@ -208,17 +208,17 @@ export default function Landing() {
       </section>
 
       {/* ── Features Carousel ── */}
-      <section id="features" className={`py-32 relative transition-colors duration-500 ${D ? 'bg-[#030712]' : 'bg-[#F8FAFE]'}`}>
+      <section id="features" className={`py-32 relative transition-colors duration-500 ${D ? 'bg-[#030712]' : 'bg-[#FCF9F2]'}`}>
         {D && <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />}
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center max-w-xl mx-auto mb-20">
             <div className={`inline-flex items-center gap-2 font-extrabold text-xs uppercase tracking-widest mb-4 ${D ? 'text-cyan-400' : 'text-blue-700'}`}>
               <span className={`w-1.5 h-1.5 rounded-full ${D ? 'bg-cyan-400' : 'bg-blue-700'}`} /> Core Capabilities
             </div>
-            <h2 className={`font-sans text-3xl md:text-4xl font-extrabold tracking-tighter mb-4 ${D ? 'text-white' : 'text-gray-900'}`}>
+            <h2 className={`font-sans text-3xl md:text-4xl font-extrabold tracking-tighter mb-4 ${D ? 'text-white' : 'text-[#0F172A]'}`}>
               Streamlined for Smart Work
             </h2>
-            <p className={`text-sm md:text-base font-bold ${D ? 'text-slate-400' : 'text-gray-700'}`}>
+            <p className={`text-sm md:text-base font-bold ${D ? 'text-slate-400' : 'text-[#475569]'}`}>
               Everything you need to manage workflows and boost team performance instantly.
             </p>
           </div>
@@ -236,14 +236,14 @@ export default function Landing() {
                           ? 'bg-[#0B1329]/60 border-blue-500/50 shadow-[0_0_25px_rgba(59,130,246,0.2)] opacity-100 scale-[1.02]' 
                           : 'bg-[#070C19]/40 border-white/[0.04] opacity-50 hover:opacity-90 hover:border-white/[0.15]'
                         : isHighlighted
-                          ? 'bg-white border-blue-600 shadow-xl opacity-100 scale-[1.02]'
-                          : 'bg-white/80 border-gray-200 shadow-md opacity-85 hover:opacity-100 hover:border-blue-400 hover:shadow-lg'
+                          ? 'bg-white border-blue-600 shadow-[0_12px_30px_rgba(37,66,131,0.15)] opacity-100 scale-[1.02]'
+                          : 'bg-white border-amber-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] opacity-85 hover:opacity-100 hover:border-blue-400 hover:shadow-md'
                       }`}
                   >
                     <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-6 transition-colors duration-300
                       ${D 
                         ? isHighlighted ? 'bg-blue-500/10 text-blue-400 border border-blue-500/20' : 'bg-white/[0.02] border border-white/[0.05]' 
-                        : isHighlighted ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'bg-gray-100 text-gray-700 border border-gray-200'
+                        : isHighlighted ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'bg-amber-50/50 border border-amber-100'
                       }`}
                     >
                       {f.icon}
@@ -251,7 +251,7 @@ export default function Landing() {
                     <h3 className={`font-sans text-lg font-extrabold tracking-tight mb-3 transition-colors
                       ${D 
                         ? 'text-slate-100' 
-                        : isHighlighted ? 'text-gray-900' : 'text-gray-800'
+                        : isHighlighted ? 'text-blue-900' : 'text-[#0F172A]'
                       }`}
                     >
                       {f.title}
@@ -259,7 +259,7 @@ export default function Landing() {
                     <p className={`text-sm leading-relaxed transition-colors
                       ${D 
                         ? 'text-slate-400' 
-                        : isHighlighted ? 'text-gray-700 font-medium' : 'text-gray-600 font-medium'
+                        : isHighlighted ? 'text-slate-800 font-bold' : 'text-[#475569] font-semibold'
                       }`}
                     >
                       {f.desc}
@@ -279,7 +279,7 @@ export default function Landing() {
       </section>
 
       {/* ── Simulated Team Roles & Permissions (How It Works থিম ম্যাচড) ── */}
-<section id="simulator" className={`py-32 border-t transition-colors duration-500 ${D ? 'bg-[#030712] border-white/[0.04]' : 'bg-[#F8FAFE] border-gray-200'}`}>
+<section id="simulator" className={`py-32 border-t transition-colors duration-500 ${D ? 'bg-[#030712] border-white/[0.04]' : 'bg-[#FCF9F2] border-amber-100/60'}`}>
   <div className="max-w-6xl mx-auto px-6">
     
     {/* সেকশন হেডার */}
@@ -287,10 +287,10 @@ export default function Landing() {
       <div className={`inline-flex items-center gap-2 font-extrabold text-xs uppercase tracking-widest mb-4 ${D ? 'text-cyan-400' : 'text-blue-700'}`}>
         <span className={`w-1.5 h-1.5 rounded-full ${D ? 'bg-cyan-400' : 'bg-blue-700'}`} /> Assessment Specs
       </div>
-      <h2 className={`font-sans text-3xl md:text-4xl font-extrabold tracking-tighter mb-4 ${D ? 'text-white' : 'text-gray-900'}`}>
+      <h2 className={`font-sans text-3xl md:text-4xl font-extrabold tracking-tighter mb-4 ${D ? 'text-white' : 'text-[#0F172A]'}`}>
         Simulate Team Roles & Permissions
       </h2>
-      <p className={`text-sm md:text-base font-bold ${D ? 'text-slate-400' : 'text-gray-700'}`}>
+      <p className={`text-sm md:text-base font-bold ${D ? 'text-slate-400' : 'text-[#475569]'}`}>
         Test our precise Role-Based Access Control (RBAC) engine simulation based on deployment parameters.
       </p>
     </div>
@@ -312,8 +312,8 @@ export default function Landing() {
                     ? 'bg-[#0B1329]/60 border-blue-500/40 shadow-lg opacity-100' 
                     : 'border-transparent opacity-50 hover:opacity-80'
                   : isActive
-                    ? 'bg-white border-blue-600 shadow-xl opacity-100'
-                    : 'bg-white/70 border-gray-200 opacity-75 hover:opacity-100 hover:bg-white hover:border-gray-300'
+                    ? 'bg-white border-blue-600 shadow-[0_10px_25px_rgba(37,66,131,0.08)] opacity-100'
+                    : 'bg-white/40 border-transparent opacity-65 hover:opacity-90 hover:bg-white hover:border-slate-200'
                 }`}
             >
               <div className="flex items-center gap-3">
@@ -322,8 +322,8 @@ export default function Landing() {
                 </span>
                 <h3 className={`font-sans text-base font-extrabold transition-colors duration-300
                   ${isActive 
-                    ? D ? 'text-white' : 'text-gray-900' 
-                    : D ? 'text-slate-400' : 'text-gray-700'
+                    ? D ? 'text-white' : 'text-blue-950' 
+                    : D ? 'text-slate-400' : 'text-[#1E293B]'
                   }`}
                 >
                   {role}
@@ -336,7 +336,7 @@ export default function Landing() {
 
       {/* ডানপাশের ডাইনামিক ডিসপ্লে প্যানেল */}
       <div className={`lg:col-span-8 rounded-2xl border p-6 md:p-8 flex flex-col justify-between transition-all duration-500
-        ${D ? 'border-white/[0.08] bg-white/[0.01]' : 'border-gray-200 bg-white/90 shadow-xl'}`}
+        ${D ? 'border-white/[0.08] bg-white/[0.01]' : 'border-slate-200/80 bg-white/50 shadow-xl'}`}
       >
         <div>
           {/* স্কোপ গার্ড ব্যাজ */}
@@ -353,10 +353,10 @@ export default function Landing() {
             </span>
           </div>
 
-          <h4 className={`text-xl font-extrabold mb-2 ${D ? 'text-white' : 'text-gray-900'}`}>
+          <h4 className={`text-xl font-extrabold mb-2 ${D ? 'text-white' : 'text-blue-950'}`}>
             {selectedRole} Engine Matrix
           </h4>
-          <p className={`text-sm mb-6 leading-relaxed ${D ? 'text-slate-400' : 'text-gray-700'}`}>
+          <p className={`text-sm mb-6 leading-relaxed ${D ? 'text-slate-400' : 'text-[#475569] font-medium'}`}>
             {roleData[selectedRole].desc}
           </p>
 
@@ -366,7 +366,7 @@ export default function Landing() {
               <div 
                 key={i} 
                 className={`flex items-start gap-3 p-3.5 rounded-xl border text-xs font-bold transition-all duration-300 transform hover:scale-[1.005]
-                  ${D ? 'bg-[#070C19]/90 border-white/[0.05] text-slate-300' : 'bg-white border-gray-200 text-gray-800 shadow-sm'}`}
+                  ${D ? 'bg-[#070C19]/90 border-white/[0.05] text-slate-300' : 'bg-white border-slate-200 text-slate-700 shadow-sm'}`}
               >
                 <span className="text-emerald-500 font-black mt-0.5">✔</span>
                 <span className="leading-tight">{perm}</span>
@@ -377,7 +377,7 @@ export default function Landing() {
 
         {/* টাস্ক ভ্যালিডেশন রুলস প্রিভিউ (Requirement 4 অনুযায়ী) */}
         <div className={`mt-6 pt-4 border-t border-dashed flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-bold
-          ${D ? 'border-white/[0.08] text-slate-400' : 'border-gray-300 text-gray-700'}`}
+          ${D ? 'border-white/[0.08] text-slate-400' : 'border-slate-300 text-slate-600'}`}
         >
           <div className="flex items-center gap-2">
             <span className="text-amber-500">🛡</span>
@@ -385,7 +385,7 @@ export default function Landing() {
           </div>
           <div className="flex flex-wrap gap-2">
             {['No Duplicate Titles', 'No Reassigning Completed', 'No Past Deadlines'].map((rule, idx) => (
-              <span key={idx} className={`px-2 py-1 rounded border ${D ? 'bg-[#030712] border-white/5 text-slate-400' : 'bg-gray-100 border-gray-300 text-gray-700'}`}>
+              <span key={idx} className={`px-2 py-1 rounded border ${D ? 'bg-[#030712] border-white/5 text-slate-400' : 'bg-slate-100 border-slate-200 text-slate-700'}`}>
                 {rule}
               </span>
             ))}
@@ -399,13 +399,13 @@ export default function Landing() {
 </section>
 
       {/* ── How It Works ── */}
-      <section id="how-it-works" className={`py-32 border-t transition-colors duration-500 ${D ? 'bg-[#030712] border-white/[0.04]' : 'bg-[#F8FAFE] border-gray-200'}`}>
+      <section id="how-it-works" className={`py-32 border-t transition-colors duration-500 ${D ? 'bg-[#030712] border-white/[0.04]' : 'bg-[#FCF9F2] border-amber-100/60'}`}>
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-20">
-            <h2 className={`font-sans text-3xl md:text-4xl font-extrabold tracking-tighter mb-4 ${D ? 'text-white' : 'text-gray-900'}`}>
+            <h2 className={`font-sans text-3xl md:text-4xl font-extrabold tracking-tighter mb-4 ${D ? 'text-white' : 'text-[#0F172A]'}`}>
               Purpose Behind Every Move
             </h2>
-            <p className={`text-sm md:text-base font-bold ${D ? 'text-slate-400' : 'text-gray-700'}`}>
+            <p className={`text-sm md:text-base font-bold ${D ? 'text-slate-400' : 'text-[#475569]'}`}>
               A streamlined framework designed to remove blockers and accelerate execution.
             </p>
           </div>
@@ -424,8 +424,8 @@ export default function Landing() {
                           ? 'bg-[#0B1329]/60 border-blue-500/40 shadow-lg opacity-100' 
                           : 'border-transparent opacity-50 hover:opacity-80'
                         : isActive
-                          ? 'bg-white border-blue-600 shadow-xl opacity-100'
-                          : 'bg-white/70 border-gray-200 opacity-75 hover:opacity-100 hover:bg-white hover:border-gray-300'
+                          ? 'bg-white border-blue-600 shadow-[0_10px_25px_rgba(37,66,131,0.08)] opacity-100'
+                          : 'bg-white/40 border-transparent opacity-65 hover:opacity-90 hover:bg-white hover:border-slate-200'
                       }`}
                   >
                     <div className={`text-xs font-extrabold uppercase tracking-wider mb-1.5 ${D ? 'text-blue-400' : 'text-blue-700'}`}>
@@ -433,14 +433,14 @@ export default function Landing() {
                     </div>
                     <h3 className={`font-sans text-base font-extrabold transition-colors duration-300
                       ${isActive 
-                        ? D ? 'text-white' : 'text-gray-900' 
-                        : D ? 'text-slate-400' : 'text-gray-700'
+                        ? D ? 'text-white' : 'text-blue-950' 
+                        : D ? 'text-slate-400' : 'text-[#1E293B]'
                       }`}
                     >
                       {step.title}
                     </h3>
                     {isActive && (
-                      <p className={`text-sm mt-2 leading-relaxed transition-opacity duration-500 ${D ? 'text-slate-400' : 'text-gray-700'}`}>
+                      <p className={`text-sm mt-2 leading-relaxed transition-opacity duration-500 ${D ? 'text-slate-400' : 'text-[#475569] font-bold'}`}>
                         {step.desc}
                       </p>
                     )}
@@ -450,7 +450,7 @@ export default function Landing() {
             </div>
 
             <div className={`lg:col-span-7 rounded-2xl overflow-hidden relative min-h-[400px] lg:h-full border shadow-xl transition-all duration-500
-              ${D ? 'border-white/[0.08] bg-white/[0.01]' : 'border-gray-200 bg-white/80 p-2'}`}
+              ${D ? 'border-white/[0.08] bg-white/[0.01]' : 'border-slate-200/80 bg-white/50 p-2'}`}
             >
               <div className="w-full h-full rounded-xl overflow-hidden relative">
                 {steps.map((step, i) => (
@@ -468,7 +468,7 @@ export default function Landing() {
       </section>
 
       {/* ── Core UI Sandbox: Live Task Board (How It Works থিম ম্যাচড) ── */}
-<section id="preview-board" className={`py-32 border-t transition-colors duration-500 ${D ? 'bg-[#030712] border-white/[0.04]' : 'bg-[#F8FAFE] border-gray-200'}`}>
+<section id="preview-board" className={`py-32 border-t transition-colors duration-500 ${D ? 'bg-[#030712] border-white/[0.04]' : 'bg-[#FCF9F2] border-amber-100/60'}`}>
   <div className="max-w-5xl mx-auto px-6">
     
     {/* সেকশন হেডার */}
@@ -476,16 +476,16 @@ export default function Landing() {
       <div className={`inline-flex items-center gap-2 font-extrabold text-xs uppercase tracking-widest mb-4 ${D ? 'text-cyan-400' : 'text-blue-700'}`}>
         <span className={`w-1.5 h-1.5 rounded-full ${D ? 'bg-cyan-400' : 'bg-blue-700'}`} /> Core UI Sandbox
       </div>
-      <h2 className={`font-sans text-3xl md:text-4xl font-extrabold tracking-tighter mb-4 ${D ? 'text-white' : 'text-gray-900'}`}>
+      <h2 className={`font-sans text-3xl md:text-4xl font-extrabold tracking-tighter mb-4 ${D ? 'text-white' : 'text-[#0F172A]'}`}>
         Experience Core Engine Filters
       </h2>
-      <p className={`text-sm md:text-base font-bold ${D ? 'text-slate-400' : 'text-gray-700'}`}>
+      <p className={`text-sm md:text-base font-bold ${D ? 'text-slate-400' : 'text-[#475569]'}`}>
         Live interactive simulation of advanced task sorting, real-time metrics routing, and productivity indicators.
       </p>
     </div>
 
     {/* ইন্টারেক্টিভ স্যান্ডবক্স প্যানেল */}
-    <div className={`rounded-2xl border p-6 md:p-8 transition-all duration-500 ${D ? 'border-white/[0.08] bg-white/[0.01]' : 'border-gray-200 bg-white/90 shadow-xl'}`}>
+    <div className={`rounded-2xl border p-6 md:p-8 transition-all duration-500 ${D ? 'border-white/[0.08] bg-white/[0.01]' : 'border-slate-200/80 bg-white/60 shadow-xl'}`}>
       
       {/* কন্ট্রোল বার: সার্চ এবং ফিল্টারিং ফিল্ডসমূহ */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mb-8 items-center">
@@ -497,7 +497,7 @@ export default function Landing() {
             placeholder="Search tasks by title or description..." 
             disabled
             className={`w-full pl-10 pr-4 py-3 text-xs font-bold rounded-xl border cursor-not-allowed transition-all
-              ${D ? 'bg-[#070C19]/60 border-white/5 text-slate-400' : 'bg-white border-gray-300 text-gray-500'}`}
+              ${D ? 'bg-[#070C19]/60 border-white/5 text-slate-400' : 'bg-white border-slate-200 text-slate-500'}`}
           />
         </div>
 
@@ -513,7 +513,7 @@ export default function Landing() {
                 className={`px-4 py-3 text-xs font-extrabold rounded-xl border transition-all duration-300 transform active:scale-95
                   ${isActive
                     ? 'bg-gradient-to-r from-blue-600 to-indigo-600 border-transparent text-white shadow-md shadow-blue-500/20'
-                    : D ? 'border-white/[0.08] bg-[#070C19]/40 text-slate-400 hover:text-white hover:bg-[#0B1329]' : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+                    : D ? 'border-white/[0.08] bg-[#070C19]/40 text-slate-400 hover:text-white hover:bg-[#0B1329]' : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
                   }`}
               >
                 {tab}
@@ -524,7 +524,7 @@ export default function Landing() {
       </div>
 
       {/* মেটাডেটা প্রডাক্টিভিটি বার */}
-      <div className={`flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border mb-6 text-xs font-bold ${D ? 'bg-[#070C19]/30 border-white/5 text-slate-400' : 'bg-gray-50 border-gray-200 text-gray-700'}`}>
+      <div className={`flex flex-wrap items-center justify-between gap-4 p-4 rounded-xl border mb-6 text-xs font-bold ${D ? 'bg-[#070C19]/30 border-white/5 text-slate-400' : 'bg-slate-50 border-slate-200 text-slate-600'}`}>
         <div className="flex items-center gap-2">
           <span className="text-blue-500">📊</span>
           <span>Filtered Result Viewport: <span className={D ? 'text-cyan-400' : 'text-blue-700'}>{filteredTasks.length} Cards Found</span></span>
@@ -542,7 +542,7 @@ export default function Landing() {
             <div 
               key={task.id} 
               className={`flex flex-col sm:flex-row sm:items-center justify-between rounded-xl px-5 py-4 border gap-4 transition-all duration-300 transform hover:translate-x-1
-                ${D ? 'bg-[#070C19]/90 border-white/[0.05] hover:border-white/10' : 'bg-white border-gray-200 shadow-sm hover:border-gray-400'}`}
+                ${D ? 'bg-[#070C19]/90 border-white/[0.05] hover:border-white/10' : 'bg-white border-slate-200 shadow-sm hover:border-slate-300'}`}
             >
               {/* বাম পাশ: ইন্ডিকেটর ও টাস্কের নাম */}
               <div className="flex items-center gap-3.5">
@@ -551,7 +551,7 @@ export default function Landing() {
                   <span className={`absolute w-2.5 h-2.5 rounded-full animate-ping opacity-40 ${task.priority === 'High' ? 'bg-rose-500' : task.priority === 'Medium' ? 'bg-amber-400' : 'bg-slate-400'}`} />
                 </div>
                 <div>
-                  <h4 className={`text-sm font-bold tracking-tight mb-0.5 ${D ? 'text-slate-200' : 'text-gray-900'}`}>{task.title}</h4>
+                  <h4 className={`text-sm font-bold tracking-tight mb-0.5 ${D ? 'text-slate-200' : 'text-slate-800'}`}>{task.title}</h4>
                   <p className="text-[11px] font-semibold opacity-50">Task ID: #00{task.id} — Project Alpha Subsystem</p>
                 </div>
               </div>
@@ -582,7 +582,7 @@ export default function Landing() {
 </section>
 
       {/* ── CTA ── */}
-      <section id="cta" className={`py-32 px-6 relative overflow-hidden transition-colors duration-500 ${D ? 'bg-[#050B14]' : 'bg-[#F8FAFE]'}`}>
+      <section id="cta" className={`py-32 px-6 relative overflow-hidden transition-colors duration-500 ${D ? 'bg-[#050B14]' : 'bg-[#FCF9F2]'}`}>
         {D && <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />}
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -591,7 +591,7 @@ export default function Landing() {
                 <div 
                   key={i} 
                   className={`relative h-60 md:h-64 rounded-2xl overflow-hidden border shadow-sm group transition-all duration-500
-                    ${D ? 'border-white/[0.08] bg-white/[0.02]' : 'border-gray-200 bg-white/80 p-1.5'}`}
+                    ${D ? 'border-white/[0.08] bg-white/[0.02]' : 'border-slate-200 bg-white/50 p-1.5'}`}
                 >
                   <img 
                     src={src} 
@@ -607,12 +607,12 @@ export default function Landing() {
                 <span className={`w-1.5 h-1.5 rounded-full ${D ? 'bg-cyan-400' : 'bg-blue-700'}`} /> Built for modern stacks
               </div>
               
-              <h2 className={`font-sans text-4xl md:text-5xl font-extrabold leading-[1.1] mb-8 tracking-tight ${D ? 'text-white' : 'text-gray-900'}`}>
+              <h2 className={`font-sans text-4xl md:text-5xl font-extrabold leading-[1.1] mb-8 tracking-tight ${D ? 'text-white' : 'text-[#0F172A]'}`}>
                 Ready to unite <br />
                 <span className={D ? 'text-blue-400' : 'text-blue-700'}>your team?</span>
               </h2>
               
-              <p className={`text-base md:text-lg mb-10 max-w-lg leading-relaxed ${D ? 'text-slate-400' : 'text-gray-700'}`}>
+              <p className={`text-base md:text-lg mb-10 max-w-lg leading-relaxed ${D ? 'text-slate-400' : 'text-[#475569] font-bold'}`}>
                 Experience the power of TaskCollab. Manage projects, track tasks, assign roles, and sync your team — all in one unified platform.
               </p>
               
@@ -625,7 +625,7 @@ export default function Landing() {
               <div className={`text-sm p-4 rounded-xl border transition-all duration-500
                 ${D 
                   ? 'bg-[#0B1329]/60 border-blue-500/30 text-slate-400' 
-                  : 'bg-white border-gray-200 shadow-md text-gray-800'
+                  : 'bg-white border-amber-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] text-[#334155]'
                 }`}
               >
                 Demo Suite: <span className={`font-mono font-extrabold ${D ? 'text-blue-400' : 'text-blue-700'}`}>admin@demo.com</span> / <span className={`font-mono font-extrabold ${D ? 'text-blue-400' : 'text-blue-700'}`}>demo1234</span>
